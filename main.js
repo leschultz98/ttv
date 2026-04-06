@@ -5,6 +5,7 @@ const HOST = 'https://truyen.tangthuvien.vn';
 
 const TITLE_REGEX = /<title>([\s\S]*?)<\/title>/;
 const CONTENT_REGEX = /<div class="box-chap[^>]*>([\s\S]*?)<\/div>/;
+const NUMBER_REGEX = /chuong-(\d+)$/;
 
 const HTML = readFileSync('index.html', 'utf8');
 
@@ -15,16 +16,23 @@ app.get('/', (req, res) => {
 });
 
 app.get('*all', async (req, res) => {
+  const number = +req.path.match(NUMBER_REGEX)[1];
   const targetUrl = `${HOST}${req.path}`;
 
   try {
     const response = await fetch(targetUrl);
     const text = await response.text();
 
-    const title = text.match(TITLE_REGEX)[1];
-    const content = text.match(CONTENT_REGEX)[1].trim();
+    const data = {
+      __TITLE__: text.match(TITLE_REGEX)[1],
+      __CONTENT__: text.match(CONTENT_REGEX)[1].trim(),
+      __PREVIOUS__: req.path.replace(NUMBER_REGEX, 'chuong-' + (number - 1)),
+      __NEXT__: req.path.replace(NUMBER_REGEX, 'chuong-' + (number + 1)),
+    };
 
-    res.send(HTML.replace('__TITLE__', title).replace('__CONTENT__', content));
+    const result = Object.entries(data).reduce((acc, [key, value]) => acc.replaceAll(key, value), HTML);
+
+    res.send(result);
   } catch (err) {
     res.sendStatus(500);
   }
