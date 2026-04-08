@@ -1,6 +1,6 @@
 export const HOST = 'https://wattpad.com.vn';
 
-const CONTENT_REGEX = /<div class="truyen">(.+?)<\/div>/;
+const CONTENT_REGEX = /<div class="truyen">([\s\S]*?)<\/div>/;
 const BACK_REGEX = /href='(.+?)' class='back'/;
 const NEXT_REGEX = /href='(.+?)' class='back'/;
 

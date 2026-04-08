@@ -27,4 +27,7 @@ app.get('*all', async (req, res) => {
   res.send(result);
 });
 
-app.listen(process.env.PORT || 3000);
+const port = process.env.PORT || 3000;
+app.listen(port, () => {
+  console.log('http://localhost:' + port);
+});

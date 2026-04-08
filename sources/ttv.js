@@ -1,6 +1,6 @@
 export const HOST = 'https://truyen.tangthuvien.vn';
 
-const CONTENT_REGEX = /<div class="box-chap.+?>(.+?)<\/div>/;
+const CONTENT_REGEX = /<div class="box-chap.+?>([\s\S]*?)<\/div>/;
 const NUMBER_REGEX = /chuong-(\d+)$/;
 
 export default function (text, path) {
