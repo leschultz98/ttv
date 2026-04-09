@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>WebNovel</title>
+    <style>
+      :root {
+        --bg-color: #121212;
+      }
+
+      body {
+        margin: 64px 16px 0;
+        background-color: var(--bg-color);
+        display: flex;
+      }
+
+      input {
+        flex: 1;
+        padding: 8px;
+        outline: none;
+      }
+    </style>
+  </head>
+  <body>
+    <input type="text" placeholder="Paste here..." />
+
+    <script>
+      const input = document.querySelector('input');
+      input.addEventListener('paste', (event) => {
+        const url = new URL(event.clipboardData.getData('text'));
+        location.href = url.pathname;
+      });
+    </script>
+  </body>
+</html>

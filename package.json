@@ -4,13 +4,9 @@
   "type": "module",
   "main": "main.js",
   "scripts": {
-    "start": "nodemon -e \"*\" main.js"
-  },
-  "dependencies": {
-    "express": "^5.2.1"
+    "start": "node main.js"
   },
   "devDependencies": {
-    "nodemon": "^3.1.14",
     "prettier": "^3.8.1"
   },
   "engines": {

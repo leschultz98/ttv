@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>WebNovel</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:opsz@18..144&display=swap" rel="stylesheet" />
+    <style>
+      :root {
+        --bg-color: #121212;
+        --text-color: #e0e0e0;
+      }
+
+      body {
+        margin: 0;
+        padding: 16px;
+        background-color: var(--bg-color);
+        color: var(--text-color);
+        font-family: 'Merriweather', serif;
+        font-size: 18px;
+        line-height: 1.6;
+      }
+
+      main {
+        white-space: pre-line;
+      }
+
+      footer {
+        padding: 16px 0;
+        display: flex;
+        justify-content: space-between;
+      }
+
+      a {
+        all: unset;
+        padding: 4px 8px;
+        border: 1px solid;
+        border-radius: 8px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <h2></h2>
+    <main></main>
+    <footer>
+      <a>Back</a>
+      <a>Next</a>
+    </footer>
+
+    <script>
+      const TITLE_REGEX = /<title>([\s\S]*?)<\/title>/;
+      const CONTENT_REGEX = /<div class="truyen">([\s\S]*?)<\/div>/;
+      const BACK_REGEX = /href='(.+?)' class='back'/;
+      const NEXT_REGEX = /href='(.+?)' class='next'/;
+
+      const titleEl = document.querySelector('title');
+      const h2El = document.querySelector('h2');
+      const mainEl = document.querySelector('main');
+      const [backEl, nextEl] = document.querySelectorAll('a');
+
+      let text;
+      let currentURL;
+
+      async function get(url = location.pathname) {
+        const response = await fetch('/api' + url);
+        text = await response.text();
+      }
+
+      async function update() {
+        titleEl.innerHTML = h2El.innerHTML = text.match(TITLE_REGEX)[1];
+        mainEl.innerHTML = text.match(CONTENT_REGEX)[1].trim();
+        backEl.href = text.match(BACK_REGEX)[1];
+
+        const next = text.match(NEXT_REGEX)[1];
+        nextEl.href = next;
+
+        window.scrollTo(0, 0);
+        if (currentURL) {
+          window.history.replaceState({}, '', currentURL);
+        }
+        currentURL = next;
+
+        nextEl.removeEventListener('click', nextHandler);
+        await get(next);
+        nextEl.addEventListener('click', nextHandler);
+      }
+
+      function nextHandler(event) {
+        event.preventDefault();
+        update();
+      }
+
+      get().then(update);
+    </script>
+  </body>
+</html>
