@@ -99,6 +99,9 @@
 
         titleEl.innerHTML = h2El.innerHTML = text.match(TITLE_REGEX)[1];
         mainEl.innerHTML = text.match(CONTENT_REGEX)[1].trim();
+        if (!mainEl.innerHTML.includes('br')) {
+          mainEl.innerHTML = mainEl.innerHTML.replace(/([.!?…])\s*/g, '$1<br><br>');
+        }
         backEl.href = text.match(BACK_REGEX)[1];
 
         const next = text.match(NEXT_REGEX)[1];
