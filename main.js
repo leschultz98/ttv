@@ -1,8 +1,11 @@
 import http from 'http';
-import { readFileSync } from 'fs';
+import { readFileSync, existsSync } from 'fs';
 import puppeteer from 'puppeteer';
 
-console.log(puppeteer.executablePath());
+const path = puppeteer.executablePath();
+
+console.log('Chrome path:', path);
+console.log('Exists:', existsSync(path));
 
 const HOST = 'https://metruyenchu.com.vn';
 
