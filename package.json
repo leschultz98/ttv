@@ -4,9 +4,9 @@
   "type": "module",
   "main": "main.js",
   "scripts": {
-    "start": "node main.js",
+    "start": "ls -la /opt/render/.cache/puppeteer && node main.js",
     "dev": "nodemon main.js",
-    "postinstall": "npx puppeteer browsers install chrome"
+    "postinstall": "npx puppeteer browsers install chrome && ls -la /opt/render/.cache/puppeteer"
   },
   "devDependencies": {
     "nodemon": "^3.1.14",
