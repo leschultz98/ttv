@@ -19,6 +19,10 @@ const server = http.createServer(async (req, res) => {
         headers: {
           cookie:
             '__RequestVerificationToken=LOmW0U1U7gMNevGealoHW1ayoI5Std0MqjgXGqMiEjUtiIozKHwHgbmv38Cz87mrKHPbQDkFmosWedHJEOhe5C505pl6i71Y5fPv39pz7ZY1; cf_clearance=dXDWTpscer3WG8FdCM5EQ_LHJ_8NL93sAj0zy.1WZ8M-1777188215-1.2.1.1-7x8SKH_cSaIklyC2vM7H6UUBaZYwjAVLfZuYrAJmfbpSe_fafgkz0gPYLuwn16UTnJLbCUKwfz1av5iujFvsoYz12gXK9qYMm_F.cbLlR2GWO8SBDwNyoqk58YwYyGH9p4.A_8OPOQu7.dTVg82I3upZqv0UDJxiJ29pTmv7gQtQas7bo2ONeFte_RVGrA4RqspdhAq_qbqeKXl6b7XI2sfKdS.bCKwVAWSgUDamL2lhsBnK6xEGUiBfVSQg5KHP1DfKM0555T8IsJEqMdhGbt9QIG.qRR2bSgDL1hTOV73Fi03_wxSgMC.b0_0atFNW6A957DgMnGfbgUr4DGZ9ZQ; _gc=4',
+          'user-agent':
+            'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36 Edg/147.0.0.0',
+          accept:
+            'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
         },
       });
       const text = await response.text();
