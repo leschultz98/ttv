@@ -1,7 +1,7 @@
 import http from 'http';
 import { readFileSync } from 'fs';
 
-const HOST = 'https://wattpad.com.vn';
+const HOST = 'https://metruyenchu.com.vn';
 
 let last, next;
 
