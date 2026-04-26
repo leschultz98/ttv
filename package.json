@@ -5,19 +5,20 @@
   "main": "main.js",
   "scripts": {
     "start": "node main.js",
-    "dev": "nodemon main.js"
+    "dev": "nodemon main.js",
+    "postinstall": "npx puppeteer browsers install chrome"
   },
   "devDependencies": {
     "nodemon": "^3.1.14",
     "prettier": "^3.8.1"
+  },
+  "dependencies": {
+    "puppeteer": "^24.42.0"
   },
   "engines": {
     "node": "22.22.0"
   },
   "volta": {
     "node": "22.22.0"
-  },
-  "dependencies": {
-    "puppeteer": "^24.42.0"
   }
 }

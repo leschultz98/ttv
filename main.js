@@ -2,6 +2,8 @@ import http from 'http';
 import { readFileSync } from 'fs';
 import puppeteer from 'puppeteer';
 
+console.log(puppeteer.executablePath());
+
 const HOST = 'https://metruyenchu.com.vn';
 
 const browser = await puppeteer.launch();
