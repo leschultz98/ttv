@@ -1,16 +1,7 @@
 import http from 'http';
-import { readFileSync, existsSync } from 'fs';
-import puppeteer from 'puppeteer';
+import { readFileSync } from 'fs';
 
-const path = puppeteer.executablePath();
-
-console.log('Chrome path:', path);
-console.log('Exists:', existsSync(path));
-
-const HOST = 'https://metruyenchu.com.vn';
-
-const browser = await puppeteer.launch();
-const page = await browser.newPage();
+const HOST = 'https://wattpad.com.vn';
 
 let last, next;
 
@@ -24,11 +15,8 @@ const server = http.createServer(async (req, res) => {
     case req.url.startsWith('/api'): {
       last = next;
       next = req.url.slice(4);
-      // const response = await fetch(HOST + next);
-      // const text = await response.text();
-      await page.goto(HOST + next);
-      await page.waitForSelector('.truyen');
-      const text = await page.content();
+      const response = await fetch(HOST + next);
+      const text = await response.text();
       res.writeHead(200);
       return res.end(text);
     }

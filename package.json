@@ -4,15 +4,10 @@
   "type": "module",
   "main": "main.js",
   "scripts": {
-    "start": "npx puppeteer browsers install chrome && node main.js",
-    "dev": "nodemon main.js"
+    "start": "node main.js"
   },
   "devDependencies": {
-    "nodemon": "^3.1.14",
     "prettier": "^3.8.1"
-  },
-  "dependencies": {
-    "puppeteer": "^24.42.0"
   },
   "engines": {
     "node": "22.22.0"
